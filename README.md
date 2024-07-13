@@ -4,7 +4,6 @@
 
 This tool recovers the control flow graph from a static binary.  The graph can be exported in multiple formats, either adjacency list, adjacency matrix, or isomorphic hash.
 
-
 # Citation
 To cite this tool, please use the following BibTex citation:
 ```
@@ -30,10 +29,25 @@ $ sudo make install
 
 # Usage
 - Install
-- Run `sem create && cd sem_home` 
-- Select binaries to compose the library.  Copy files to `'data'`.
-- Run `sem init`.
-- Select an example to search for similarity.
+- Run `cfg [option]` 
+
+### `--asm [source_file]`
+Assumes assembly input.  This is the default, when unspecified.  Assembly file from `objdump` output is expected with `intel` format specified.  `source_file` parameter is a path to the assembly file.
+
+### `--bin [source_file]`
+Expects a binary as input.  This option performs decompilation the binary.  `source_file` is a path to the binary.
+
+### `--list [dest_file]`
+Outputs the graph in adjacency list format.  This is the default, when unspecified.  `dest_file` is a path for the output file.
+
+### `--matrix [dest_file]`
+Outputs the graph as an adjacency matrix in `csv` format.  This is compatible with NumPy matrices, and NetworkX graphs.  The matrix can be imported by either of these libraries using `as_csv()`.  `dest_file` is a path for the output file.
+
+### `--hash`
+Outputs a hash value representing the graph's isomorphism using Weisfeiler-Lehman graph hashing.  Defaults to `STDOUT`.
+
+# Documentation
+Please see `/docs/README`.
 
 # License
 This project uses the GNU Public License Version 3.  Please see the [LICENSE](https://github.com/musgravejw/cfg-tool/blob/HEAD/LICENSE) for more information.
