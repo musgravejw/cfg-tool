@@ -2,7 +2,7 @@
 ![GitHub License](https://img.shields.io/github/license/musgravejw/cfg-tool)
 ![GitHub Tag](https://img.shields.io/github/v/tag/musgravejw/cfg-tool)
 
-This tool recovers the control flow graph from a static binary.  The graph can be exported in multiple formats, either adjacency list, adjacency matrix, or isomorphic hash.
+This tool recovers the control flow graph from a static binary.  The graph can be exported in multiple formats, either adjacency list, adjacency matrix CSV, or isomorphic hash.
 
 # Citation
 To cite this tool, please use the following BibTex citation:
@@ -29,19 +29,19 @@ $ sudo make install
 
 # Usage
 - Install
-- Run `cfg [option]` 
+- Run `cfg [source_file] [dest_file]` 
 
 ### `--asm [source_file]`
 Assumes assembly input.  This is the default, when unspecified.  Assembly file from `objdump` output is expected with `intel` format specified.  `source_file` parameter is a path to the assembly file.
 
-### `--bin [source_file]`
-Expects a binary as input.  This option performs decompilation the binary.  `source_file` is a path to the binary.
+### ~~`--bin [source_file]`~~
+~~Expects a binary as input.  This option performs decompilation the binary.  `source_file` is a path to the binary~~.
 
 ### `--list [dest_file]`
 Outputs the graph in adjacency list format.  This is the default, when unspecified.  `dest_file` is a path for the output file.
 
 ### `--matrix [dest_file]`
-Outputs the graph as an adjacency matrix in `csv` format.  This is compatible with NumPy matrices, and NetworkX graphs.  The matrix can be imported by either of these libraries using `as_csv()`.  `dest_file` is a path for the output file.
+Outputs the graph as an adjacency matrix in `csv` format.  This is compatible with NumPy matrices, and NetworkX graphs.  The matrix can be imported by either of these libraries using CSV import.  `dest_file` is a path for the output file.
 
 ### `--hash`
 Outputs a hash value representing the graph's isomorphism using Weisfeiler-Lehman graph hashing.  Defaults to `STDOUT`.
@@ -66,4 +66,4 @@ This project uses the GNU Public License Version 3.  Please see the [LICENSE](ht
 ```
 
 # Author
-John Musgrave <@musgravejw>, 2019-2024.
+John Musgrave <@musgravejw>, 2019-2022.
