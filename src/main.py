@@ -15,6 +15,8 @@
 import networkx as nx
 import numpy as np
 import argparse
+import os
+import subprocess
 import sys
 
 control_instructions_list = ['jmp', 'jz', 'jne', 'jg', 'jge', 'je', 'jl', 'jn', 'jnz', 'jnb', 'jb', 'jbe', 'ja', 'call']
@@ -50,11 +52,11 @@ def construct_cfg(dest_path, src_path, input_option, output_option):
 
       if is_control_transfer:
         if 'stub' in line:
-          break
           # print('stub')
+          pass
         elif 'qword' in line:
-          break
           # print('qword')
+          pass
         else:
           label = line.split('\t')[0]
           label = label[:-1]
@@ -88,6 +90,17 @@ def construct_cfg(dest_path, src_path, input_option, output_option):
     print(cfg_hash)
 
 
+def decompile_binary(binary_path):
+  filename = os.path.basename(binary_path)
+  temp_path = "/tmp/cfg/asm/" + filename
+
+  with open(temp_path, "w") as myfile:
+    ps1 = subprocess.Popen(["objdump", "-D", "--no-show-raw-insn", "--x86-asm-syntax=intel", binary_path], stdout=myfile, stderr=subprocess.DEVNULL)
+    output, error = ps1.communicate()
+
+  return temp_path
+
+
 if __name__ == "__main__":
   src_path = ""
   dest_path = ""
@@ -96,7 +109,7 @@ if __name__ == "__main__":
   parser.add_argument('src_file', nargs='?', help=argparse.SUPPRESS)
   parser.add_argument('dest_file', nargs='?', help=argparse.SUPPRESS)
   parser.add_argument('--asm', dest='source_file', help='Expects assembly input')
-  # parser.add_argument('--bin', dest='bin_file', help='Expects binary file as input')
+  parser.add_argument('--bin', dest='bin_file', help='Expects binary file as input')
   parser.add_argument('--list', dest='list_file', help='Outputs CFG in adjacency list format')
   parser.add_argument('--matrix', dest='csv_file', help='Outputs CFG as an adjacency matrix in CSV format')
   parser.add_argument('--hash', dest='hash', action='store_true', help='Outputs a hash value representing the graph\'s isomorphism using Weisfeiler-Lehman graph hashing')
@@ -114,9 +127,9 @@ if __name__ == "__main__":
     if args.source_file:
         input_option = 1
         src_path = args.source_file
-    # elif args.bin_file:
-    #     input_option = 2
-    #     src_path = args.bin_file
+    elif args.bin_file:
+        input_option = 2
+        src_path = decompile_binary(args.bin_file)
     else:
         input_option = 1
         src_path = args.src_file

@@ -34,8 +34,8 @@ $ sudo make install
 ### `--asm [source_file]`
 Assumes assembly input.  This is the default, when unspecified.  Assembly file from `objdump` output is expected with `intel` format specified.  `source_file` parameter is a path to the assembly file.
 
-### ~~`--bin [source_file]`~~
-~~Expects a binary as input.  This option performs decompilation the binary.  `source_file` is a path to the binary~~.
+### `--bin [source_file]`
+Expects a binary as input.  This option performs decompilation the binary.  `source_file` is a path to the binary.
 
 ### `--list [dest_file]`
 Outputs the graph in adjacency list format.  This is the default, when unspecified.  `dest_file` is a path for the output file.
