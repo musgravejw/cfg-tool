@@ -7,15 +7,17 @@ This tool recovers the control flow graph from a static binary.  The graph can b
 # Citation
 To cite this tool, please use the following BibTex citation:
 ```
-@misc{musgrave2024knnclassificationmalwaredata,
-      title={kNN Classification of Malware Data Dependency Graph Features}, 
-      author={John Musgrave and Anca Ralescu},
-      year={2024},
-      eprint={2406.02654},
-      archivePrefix={arXiv},
-      primaryClass={cs.CR},
-      url={https://arxiv.org/abs/2406.02654}, 
-}
+@INPROCEEDINGS{10670673,
+  author={Musgrave, John and Ralescu, Anca},
+  booktitle={NAECON 2024 - IEEE National Aerospace and Electronics Conference}, 
+  title={kNN Classification of Malware Data Dependency Graph Features}, 
+  year={2024},
+  volume={},
+  number={},
+  pages={206-213},
+  keywords={Training;Measurement;Accuracy;Semantics;Aerospace electronics;Feature extraction;Malware;machine learning;feature extraction;malware analysis},
+  doi={10.1109/NAECON61878.2024.10670673}}
+
 ```
 
 # Install
